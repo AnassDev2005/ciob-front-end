@@ -1,0 +1,197 @@
+.header-wrapper {
+  position: relative;
+  z-index: 1030;
+}
+
+.fixed-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.fixed-nav .navbar-brand img {
+  height: 30px !important;
+}
+
+.fixed-nav .nav-link {
+  font-size: 0.9rem;
+}
+
+body.fixed-nav-active {
+  padding-top: 70px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse.show {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    background: white;
+    padding: 5rem 1.5rem 1rem;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    transform: translateX(0);
+    z-index: 1050;
+  }
+
+  .navbar-collapse.show .navbar-nav {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .navbar-collapse.show .nav-link {
+    padding: 0.75rem 0;
+    position: relative;
+    transition: color 0.2s ease;
+  }
+
+  .navbar-collapse.show .nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) scaleX(0);
+    width: 100%;
+    height: 40px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    transition: transform 0.25s ease;
+    z-index: -1;
+  }
+
+  .navbar-collapse.show .nav-link:hover {
+    color: #000;
+  }
+
+  .navbar-collapse.show .nav-link:hover::before {
+    transform: translateY(-50%) scaleX(1);
+  }
+
+  .navbar-collapse {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar-collapse.show {
+    transform: translateX(0);
+  }
+
+  .navbar-collapse.closing {
+    display: block !important;
+    animation: slideMenuOut 0.3s ease-in forwards;
+  }
+
+  @keyframes slideMenuOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    transform-origin: left;
+    animation: slideInOverlay 0.3s ease-out forwards;
+  }
+
+  @keyframes slideInOverlay {
+    from { 
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    to { 
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+
+  .menu-overlay.closing {
+    animation: slideOutOverlay 0.3s ease-in forwards;
+  }
+
+  @keyframes slideOutOverlay {
+    from { 
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    to { 
+      transform: scaleX(0);
+      opacity: 0;
+    }
+  }
+}
+
+.navbar-toggler:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.navbar-toggler:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: 50%;
+  height: 3px;
+}
+
+.nav-link:hover {
+  color: #000;
+}
+
+.nav-item .nav-link.active::after {
+  display: none;
+}
+
+.nav-link.active {
+  color: #1a1a1a !important;
+}
