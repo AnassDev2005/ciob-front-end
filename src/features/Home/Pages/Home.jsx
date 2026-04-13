@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 import { 
   Shield, 
@@ -8,7 +9,6 @@ import {
   Truck, 
   Award,
   ChevronRight,
-  ShoppingBag,
   Package,
   Quote
 } from 'lucide-react';
@@ -79,12 +79,9 @@ const Home = () => {
               Outils de précision pour le paysage culinaire moderne.
             </p>
             <div className="d-flex gap-3 justify-content-center mt-5 flex-wrap">
-              <button className="btn hero-btn-primary btn-lg px-4 d-flex align-items-center gap-2">
-                <ShoppingBag size={20} /> ACHETER
-              </button>
-              <button className="btn hero-btn-secondary btn-lg px-4 d-flex align-items-center gap-2">
+              <Link to="/produits" className="btn hero-btn-secondary btn-lg px-4 d-flex align-items-center gap-2">
                 <Package size={20} /> EXPLORER LES PRODUITS
-              </button>
+              </Link>
             </div>
           </div>
         </FadeInSection>
@@ -202,7 +199,7 @@ const Home = () => {
                 <MapPin size={48} className="showroom-icon mb-3" />
                 <h3 className="h4 fw-bold mb-2 showroom-title">SHOWROOMS</h3>
                 <p className="text-secondary mb-0 showroom-description">
-                  Visitez nos magasins d'usine exclusifs à Fès et Casablanca.
+                  Visitez nos magasins d'usine exclusifs à Fès.
                 </p>
               </div>
             </FadeInSection>

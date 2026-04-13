@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import logoCiob from '../../../assets/Images/Logo/ciob.jpg';
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
           
           {/* Section Logo & Description */}
           <div className="col-lg-3 col-md-6">
-            <h5 className="fw-bold mb-4" style={{ letterSpacing: '2px' }}>TITANIC</h5>
+            <img src={logoCiob} alt="CIOB" style={{ height: '35px', objectFit: 'contain' }} />
             <p className="text-secondary small lh-lg">
               Précision technique pour les maîtres culinaires. Le premier partenaire industriel du Maroc depuis 1984.
             </p>
@@ -61,7 +62,7 @@ const Footer = () => {
         <hr className="my-5 text-muted opacity-25" />
         <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
           <p className="text-secondary mb-0" style={{ fontSize: '12px' }}>
-            © 2024 CIOB MAROC. TITANIC est une marque déposée.
+            © 2024 CIOB MAROC. Tous droits réservés.
           </p>
           <div className="d-flex align-items-center gap-2 mt-3 mt-md-0">
             <span className="rounded-circle bg-success" style={{ width: '8px', height: '8px' }}></span>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { Search, ShoppingCart, Menu, X } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import './Header.css';
-import logoCiob from '../../../assets/Images/Logo/ciob.jpg';
 import logoTitanic from '../../../assets/Images/Logo/titanic.png';
 
 const Header = () => {
@@ -56,8 +55,7 @@ const Header = () => {
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          <Link className="navbar-brand d-flex align-items-center gap-2" to="/">
-            <img src={logoCiob} alt="CIOB MAROC" style={{ height: '35px', objectFit: 'contain' }} />
+          <Link className="navbar-brand d-flex align-items-center" to="/">
             <img src={logoTitanic} alt="TITANIC" style={{ height: '40px', objectFit: 'contain' }} />
           </Link>
 
@@ -84,9 +82,6 @@ const Header = () => {
           <div className="d-flex align-items-center gap-4">
             <button className="btn btn-link text-dark p-0 border-0 bg-transparent">
               <Search size={22} strokeWidth={1.5} />
-            </button>
-            <button className="btn btn-link text-dark p-0 border-0 bg-transparent">
-              <ShoppingCart size={22} strokeWidth={1.5} />
             </button>
           </div>
 
