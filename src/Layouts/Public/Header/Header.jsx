@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Search, Menu, X } from 'lucide-react';
 import './Header.css';
 import logoTitanic from '../../../assets/Images/Logo/titanic.png';
@@ -8,7 +8,11 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const searchInputRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +27,12 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (searchOpen && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [searchOpen]);
+
   const isActive = (path) => location.pathname === path;
 
   const handleClose = () => {
@@ -31,6 +41,20 @@ const Header = () => {
       setIsOpen(false);
       setIsClosing(false);
     }, 300);
+  };
+
+  const toggleSearch = () => {
+    setSearchOpen(!searchOpen);
+    setSearchQuery('');
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/produits?search=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchOpen(false);
+      setSearchQuery('');
+    }
   };
 
   const navLinkClass = (path) => {
@@ -80,9 +104,30 @@ const Header = () => {
           </div>
 
           <div className="d-flex align-items-center gap-4">
-            <button className="btn btn-link text-dark p-0 border-0 bg-transparent">
-              <Search size={22} strokeWidth={1.5} />
-            </button>
+            <div className="search-container">
+              {searchOpen ? (
+                <form onSubmit={handleSearchSubmit} className="search-form">
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder="Rechercher un produit..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
+                  />
+                  <button type="button" className="search-close" onClick={toggleSearch}>
+                    <X size={20} />
+                  </button>
+                </form>
+              ) : (
+                <button 
+                  className="btn btn-link text-dark p-0 border-0 bg-transparent"
+                  onClick={toggleSearch}
+                >
+                  <Search size={22} strokeWidth={1.5} />
+                </button>
+              )}
+            </div>
           </div>
 
         </div>

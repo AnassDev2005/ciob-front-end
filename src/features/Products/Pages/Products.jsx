@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import { X } from 'lucide-react';
 import { 
   ChefHat, 
   Soup, 
@@ -11,6 +12,7 @@ import {
   List
 } from 'lucide-react';
 import { products as staticProducts, categories as staticCategories } from '../../../data';
+import Card from '../../../Components/Card/Card';
 import './Products.css';
 
 import Recette1 from '../../../assets/Images/produitR/Recette1.jpg';
@@ -76,6 +78,9 @@ const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const searchQuery = searchParams.get('search') || '';
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -85,7 +90,14 @@ const Products = () => {
   }, []);
 
   const filteredProducts = products
-    .filter(p => activeCategory === 'all' || p.category === activeCategory);
+    .filter(p => {
+      const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+      const matchesSearch = !searchQuery || 
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.features.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()));
+      return matchesCategory && matchesSearch;
+    });
 
   return (
     <div className="products-wrapper">
@@ -148,9 +160,24 @@ const Products = () => {
             <div className="col-lg-9">
               <FadeInSection>
                 <div className="products-toolbar d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-                  <p className="results-count mb-0">
-                    Affichage de <strong>{filteredProducts.length}</strong> produit{filteredProducts.length > 1 ? 's' : ''}
-                  </p>
+                  <div className="d-flex align-items-center gap-3">
+                    <p className="results-count mb-0">
+                      Affichage de <strong>{filteredProducts.length}</strong> produit{filteredProducts.length > 1 ? 's' : ''}
+                    </p>
+                    {searchQuery && (
+                      <button 
+                        className="search-clear-btn"
+                        onClick={() => {
+                          const params = new URLSearchParams(searchParams);
+                          params.delete('search');
+                          navigate(`/produits?${params.toString()}`);
+                        }}
+                      >
+                        <X size={14} />
+                        <span>Recherche: "{searchQuery}"</span>
+                      </button>
+                    )}
+                  </div>
                   <div className="d-flex align-items-center gap-3">
                     <div className="view-toggle d-flex gap-1">
                       <button 
@@ -173,32 +200,10 @@ const Products = () => {
               <div className={`products-grid ${viewMode === 'list' ? 'list-view' : ''}`}>
                 {filteredProducts.map((product, index) => (
                   <FadeInSection key={product.id} delay={(index % 4) + 1}>
-                    <div className="product-card">
-                      <div className="product-image">
-                        <div className="product-image-placeholder">
-                          <ChefHat size={48} className="text-secondary" />
-                        </div>
-                        <div className="product-overlay text-center">
-                          <Link to={`/produits/${product.id}`} className="btn btn-dark btn-sm">
-                            Voir détails
-                          </Link>
-                        </div>
-                      </div>
-                      <div className="product-info">
-                        <p className="product-category mb-1">
-                          {categories.find(c => c.id === product.category)?.name}
-                        </p>
-                        <h3 className="product-name">{product.name}</h3>
-                        <p className="product-description">{product.description}</p>
-                        <div className="product-features d-none d-lg-flex gap-2 flex-wrap mb-3">
-                          {product.features.slice(0, 3).map((feature, i) => (
-                            <span key={i} className="feature-tag">
-                              <ShieldCheck size={12} /> {feature}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+                    <Card 
+                      product={product} 
+                      categoryName={categories.find(c => c.id === product.category)?.name}
+                    />
                   </FadeInSection>
                 ))}
               </div>
