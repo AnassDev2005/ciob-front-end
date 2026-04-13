@@ -198,14 +198,25 @@ const Products = () => {
               </FadeInSection>
 
               <div className={`products-grid ${viewMode === 'list' ? 'list-view' : ''}`}>
-                {filteredProducts.map((product, index) => (
-                  <FadeInSection key={product.id} delay={(index % 4) + 1}>
-                    <Card 
-                      product={product} 
-                      categoryName={categories.find(c => c.id === product.category)?.name}
-                    />
-                  </FadeInSection>
-                ))}
+                {filteredProducts.length === 0 ? (
+                  <div className="no-products-message text-center py-5">
+                    <h3 className="fw-bold mb-3">Aucun produit trouvé</h3>
+                    <p className="text-muted">
+                      {searchQuery 
+                        ? `Aucun résultat pour "${searchQuery}". Essayez une autre recherche.`
+                        : "Aucun produit disponible dans cette catégorie pour le moment."}
+                    </p>
+                  </div>
+                ) : (
+                  filteredProducts.map((product, index) => (
+                    <FadeInSection key={product.id} delay={(index % 4) + 1}>
+                      <Card
+                        product={product}
+                        categoryName={categories.find(c => c.id === product.category)?.name}
+                      />
+                    </FadeInSection>
+                  ))
+                )}
               </div>
             </div>
           </div>

@@ -1,10 +1,4 @@
-export const categories = [
-  { id: 'all', name: 'Tous les produits' },
-  { id: 'casserole', name: 'Casserole' },
-  { id: 'poele', name: 'Poêles' },
-  { id: 'ustensiles', name: 'Ustensiles' },
-  { id: 'accessoires', name: 'Accessoires' },
-];
+export const categories = [pls ];
 
 export const products = [
   {
