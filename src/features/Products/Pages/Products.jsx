@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
-import { 
-  ChefHat, 
-  Soup, 
-  UtensilsCrossed, 
-  Layers, 
+import {
+  ChefHat,
+  Soup,
+  UtensilsCrossed,
+  Layers,
   ShieldCheck,
   Filter,
   Grid,
-  List
+  List,
+  Package,
+  Search,
+  ArrowRight
 } from 'lucide-react';
 import { products as staticProducts, categories as staticCategories } from '../../../data';
 import Card from '../../../Components/Card/Card';
@@ -199,13 +202,26 @@ const Products = () => {
 
               <div className={`products-grid ${viewMode === 'list' ? 'list-view' : ''}`}>
                 {filteredProducts.length === 0 ? (
-                  <div className="no-products-message text-center py-5">
-                    <h3 className="fw-bold mb-3">Aucun produit trouvé</h3>
-                    <p className="text-muted">
+                  <div className="no-products-message">
+                    <Package size={64} strokeWidth={1.5} />
+                    <h3>Aucun produit trouvé</h3>
+                    <p>
                       {searchQuery 
                         ? `Aucun résultat pour "${searchQuery}". Essayez une autre recherche.`
-                        : "Aucun produit disponible dans cette catégorie pour le moment."}
+                        : "Aucun produit disponible dans cette catégorie."}
                     </p>
+                    {searchQuery && (
+                      <button
+                        className="no-products-btn"
+                        onClick={() => {
+                          const params = new URLSearchParams(searchParams);
+                          params.delete('search');
+                          navigate(`/produits?${params.toString()}`);
+                        }}
+                      >
+                        Réinitialiser la recherche
+                      </button>
+                    )}
                   </div>
                 ) : (
                   filteredProducts.map((product, index) => (

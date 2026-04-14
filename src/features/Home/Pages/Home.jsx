@@ -261,7 +261,7 @@ const Home = () => {
                     <h5 className="fw-bold mb-2 d-flex align-items-center gap-2 factory-info-title">
                       <Building2 size={18} className="text-danger" /> CONTACT DIRECT
                     </h5>
-                    <p className="text-secondary mb-0 factory-info-text">+212 535 94 52 52</p>
+                    <p className="text-secondary mb-0 factory-info-text">+212 535 729 168</p>
                     <p className="text-danger mb-0 factory-info-text">contact@ciobmaroc.ma</p>
                   </div>
                 </div>
