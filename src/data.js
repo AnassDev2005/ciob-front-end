@@ -17,7 +17,20 @@ export const products = [
     reviews: 128,
     badge: 'Populaire',
     description: 'Casserole professionnelle en acier inoxydable 18/10, fond sandwich pour une distribution uniforme de la chaleur.',
-    features: ['Acier inox 18/10', 'Fond sandwich', 'Poignées ergonomiques', 'Couvercle verre trempé']
+    features: ['Acier inox 18/10', 'Fond sandwich', 'Poignées ergonomiques', 'Couvercle verre trempé'],
+    specifications: {
+        diameter: '24 cm',
+        capacity: '4 L',
+        material: 'Inox 18/10',
+        weight: '1.5 kg',
+        compatibility: ['Gaz', 'Induction', 'Électrique']
+  },
+  images: [
+  '/images/casserole1.jpg',
+  '/images/casserole2.jpg'
+],
+  usage: 'Idéale pour sauces, soupes et cuisson quotidienne.',
+  stock: 25
   },
   {
     id: 2,

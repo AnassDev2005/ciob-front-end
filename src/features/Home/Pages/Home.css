@@ -12,7 +12,7 @@
 
 .hero-section {
   background: linear-gradient(135deg, rgba(26, 26, 26, 0.85) 0%, rgba(45, 45, 45, 0.75) 50%, rgba(26, 26, 26, 0.85) 100%), 
-              url('../../../assets/Images/img1.jpg');
+              url('../../../assets/Images/Hero/img1.jpg');
   background-size: cover;
   background-position: center;
   position: relative;

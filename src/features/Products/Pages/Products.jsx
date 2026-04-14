@@ -81,6 +81,7 @@ const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showFilters, setShowFilters] = useState(true);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const searchQuery = searchParams.get('search') || '';
@@ -131,36 +132,58 @@ const Products = () => {
       <section className="products-content py-5">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3">
-              <FadeInSection>
-                <div className="filters-sidebar">
-                  <div className="filters-header d-flex align-items-center gap-2 mb-4">
-                    <Filter size={20} className="text-danger" />
-                    <h4 className="fw-bold mb-0">Filtres</h4>
-                  </div>
-                  
-                  <div className="filter-group mb-4">
-                    <h5 className="filter-title mb-3">Catégories</h5>
-                    <div className="category-list">
-                      {categories.map((cat) => (
-                        <button
-                          key={cat.id}
-                          className={`category-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                          onClick={() => setActiveCategory(cat.id)}
-                        >
-                          {cat.icon}
-                          <span>{cat.name}</span>
-                        </button>
-                      ))}
+            <div className={showFilters ? 'col-lg-3' : 'col-auto'}>
+              <div className="filter-toggle-container">
+                {!showFilters && (
+                  <button
+                    className="show-filters-btn"
+                    onClick={() => setShowFilters(true)}
+                    title="Afficher les filtres"
+                  >
+                    <Filter size={24} />
+                  </button>
+                )}
+              </div>
+              {showFilters && (
+                <FadeInSection>
+                  <div className="filters-sidebar">
+                    <div className="filters-header d-flex align-items-center justify-content-between mb-4">
+                      <div className="d-flex align-items-center gap-2">
+                        <Filter size={20} className="text-danger" />
+                        <h4 className="fw-bold mb-0">Filtres</h4>
+                      </div>
+                      <button
+                        className="btn btn-sm toggle-filter-btn"
+                        onClick={() => setShowFilters(false)}
+                        title="Masquer les filtres"
+                      >
+                        <X size={18} />
+                      </button>
                     </div>
-                  </div>
 
-                  
-                </div>
-              </FadeInSection>
+                    <div className="filter-group mb-4">
+                      <h5 className="filter-title mb-3">Catégories</h5>
+                      <div className="category-list">
+                        {categories.map((cat) => (
+                          <button
+                            key={cat.id}
+                            className={`category-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                            onClick={() => setActiveCategory(cat.id)}
+                          >
+                            {cat.icon}
+                            <span>{cat.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+
+                  </div>
+                </FadeInSection>
+              )}
             </div>
 
-            <div className="col-lg-9">
+            <div className={showFilters ? 'col-lg-9' : 'col-lg-12'}>
               <FadeInSection>
                 <div className="products-toolbar d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
                   <div className="d-flex align-items-center gap-3">
