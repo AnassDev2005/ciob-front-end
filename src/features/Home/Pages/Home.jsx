@@ -99,7 +99,7 @@ const Home = () => {
         <FadeInSection>
           <div className="container mb-4">
             <h2 className="display-5 fw-bold text-center mb-3 products-marquee-title">NOS PRODUITS</h2>
-            <div className="mx-auto" style={{ width: '60px', height: '4px', borderRadius: '2px', background: 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)' }}></div>
+            <p className="products-marquee-subtitle">Découvrez notre sélection d'ustensiles de cuisine professionnels</p>
           </div>
         </FadeInSection>
         <div className="products-marquee-wrapper">

@@ -490,30 +490,83 @@
 .fade-in-delay-5 { transition-delay: 0.5s; }
 
 .products-marquee-section {
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  background: linear-gradient(135deg, #fafbfc 0%, #f3f5f7 50%, #ffffff 100%);
   overflow: hidden;
-  padding: 3rem 0;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.products-marquee-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+}
+
+.products-marquee-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
 }
 
 .products-marquee-title {
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  letter-spacing: 2px;
-  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: 3px;
+  margin-bottom: 0.5rem;
   text-transform: uppercase;
+}
+
+.products-marquee-subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.5px;
 }
 
 .products-marquee-wrapper {
   position: relative;
   width: 100%;
+  padding: 1rem 0;
+}
+
+.products-marquee-wrapper::before,
+.products-marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.products-marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(90deg, #fafbfc 0%, transparent);
+}
+
+.products-marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(270deg, #fafbfc 0%, transparent);
 }
 
 .products-marquee-track {
   display: flex;
   width: fit-content;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 35s linear infinite;
+  padding-left: 1rem;
 }
 
 .products-marquee-track:hover {
@@ -531,80 +584,132 @@
 
 .product-marquee-card {
   flex-shrink: 0;
-  width: 280px;
-  margin: 0 1rem;
+  width: 260px;
+  margin: 0 0.75rem;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  border: 1px solid #f3f4f6;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none !important;
   display: block;
+  position: relative;
+}
+
+.product-marquee-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-marquee-card:hover::before {
+  opacity: 1;
 }
 
 .product-marquee-card * {
   text-decoration: none !important;
+  position: relative;
+  z-index: 1;
 }
 
 .product-marquee-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.25);
 }
 
 .product-marquee-image {
   width: 100%;
   height: 180px;
   object-fit: cover;
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  background: linear-gradient(135deg, #f8f9fa 0%, #e5e7eb 100%);
 }
 
 .product-marquee-placeholder {
   width: 100%;
-  height: 180px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-  color: #9ca3af;
+  background: linear-gradient(160deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%);
+  color: #adb5bd;
   position: relative;
+  overflow: hidden;
+}
+
+.product-marquee-placeholder::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-marquee-card:hover .product-marquee-placeholder::before {
+  opacity: 1;
 }
 
 .product-marquee-badge {
   position: absolute;
-  top: 12px;
-  left: 12px;
+  top: 14px;
+  left: 14px;
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.7rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: #ffffff;
-  background: #ef4444;
-  border-radius: 4px;
-  z-index: 1;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border-radius: 6px;
+  z-index: 2;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+  transition: all 0.3s ease;
+}
+
+.product-marquee-card:hover .product-marquee-badge {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.5);
 }
 
 .product-marquee-content {
-  padding: 1.25rem;
+  padding: 1.25rem 1rem;
+  background: #ffffff;
+}
+
+.product-marquee-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.4rem;
 }
 
 .product-marquee-name {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #111827;
   margin-bottom: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.4;
+  transition: color 0.3s ease;
 }
 
-.product-marquee-category {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #3b82f6;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.product-marquee-card:hover .product-marquee-name {
+  color: #2563eb;
 }
 
 @media (max-width: 768px) {
@@ -630,9 +735,25 @@
   
   .product-marquee-card {
     width: 220px;
+    margin: 0 0.5rem;
   }
   
   .products-marquee-section {
-    padding: 2rem 0;
+    padding: 2.5rem 0;
+  }
+
+  .products-marquee-title {
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+  }
+
+  .products-marquee-subtitle {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+
+  .products-marquee-wrapper::before,
+  .products-marquee-wrapper::after {
+    width: 60px;
   }
 }
