@@ -86,14 +86,14 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #ffffff;
-  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -112,7 +112,7 @@
 
 .show-filters-btn:hover {
   transform: scale(1.1) rotate(180deg);
-  box-shadow: 0 12px 35px rgba(239, 68, 68, 0.5);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
 }
 
 .show-filters-btn:hover::before {
@@ -130,7 +130,7 @@
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 100px;
-  border: 1px solid rgba(0, 0, 0, 0.03);
+  border: 2px solid #3b82f6;
   transition: all 0.3s ease;
   animation: slideIn 0.3s ease;
 }
@@ -156,9 +156,9 @@
 }
 
 .toggle-filter-btn:hover {
-  background: #ef4444;
+  background: #3b82f6;
   color: #ffffff;
-  border-color: #ef4444;
+  border-color: #3b82f6;
   transform: rotate(90deg);
 }
 
@@ -197,17 +197,17 @@
 
 .category-btn:hover {
   background: #f9fafb;
-  border-color: #ef4444;
+  border-color: #3b82f6;
   color: #1a1a1a;
   transform: translateX(4px);
 }
 
 .category-btn.active {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  border-color: #ef4444;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  border-color: #3b82f6;
   color: #ffffff;
   font-weight: 600;
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
 .price-slider {
@@ -224,9 +224,9 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #ef4444;
+  background: #3b82f6;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
 }
 
 .price-labels {
@@ -253,10 +253,10 @@
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-  border: 1px solid #fecaca;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 1px solid #bfdbfe;
   border-radius: 20px;
-  color: #dc2626;
+  color: #2563eb;
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
@@ -264,7 +264,7 @@
 }
 
 .search-clear-btn:hover {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   transform: scale(1.02);
 }
 
@@ -286,8 +286,8 @@
 }
 
 .sort-dropdown .form-select:focus {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .products-grid {
@@ -374,7 +374,7 @@
 
 .product-badge.populaire,
 .product-badge.best-seller {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
   color: #ffffff;
 }
 
@@ -491,7 +491,7 @@
 }
 
 .quick-action-btn:hover {
-  background: #ef4444;
+  background: #3b82f6;
   color: #ffffff;
   transform: scale(1.1);
 }
@@ -675,7 +675,7 @@
 .no-products-btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background: #ef4444;
+  background: #3b82f6;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -686,7 +686,7 @@
 }
 
 .no-products-btn:hover {
-  background: #dc2626;
+  background: #2563eb;
   transform: translateY(-1px);
 }
 

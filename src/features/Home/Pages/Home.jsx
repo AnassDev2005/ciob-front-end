@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import { products, categories } from '../../../data';
 import { 
   Shield, 
   Clock, 
@@ -12,6 +13,13 @@ import {
   Package,
   Quote
 } from 'lucide-react';
+
+const allProducts = products;
+
+const getCategoryName = (categoryId) => {
+  const category = categories.find(c => c.id === categoryId);
+  return category ? category.name : categoryId;
+};
 
 const FadeInSection = ({ children, className = '', delay = 0 }) => {
   const sectionRef = useRef(null);
@@ -70,7 +78,7 @@ const Home = () => {
             <h1 className="display-3 fw-bold mb-3 hero-title">
               USTENSILES DE CUISINE DE HAUTE QUALITÉ
             </h1>
-            <div className="bg-danger mx-auto mb-4 hero-divider" style={{ width: '80px', height: '3px', borderRadius: '2px' }}></div>
+            <div className="mx-auto mb-4 hero-divider" style={{ width: '80px', height: '3px', borderRadius: '2px', background: 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)' }}></div>
             <p className="display-6 fw-light mb-4 hero-subtitle">
               FABRIQUÉS AU MAROC
             </p>
@@ -83,6 +91,40 @@ const Home = () => {
                 <Package size={20} /> EXPLORER LES PRODUITS
               </Link>
             </div>
+          </div>
+        </FadeInSection>
+      </section>
+
+      <section className="products-marquee-section py-5">
+        <FadeInSection>
+          <div className="container mb-4">
+            <h2 className="display-5 fw-bold text-center mb-3 products-marquee-title">NOS PRODUITS</h2>
+            <div className="mx-auto" style={{ width: '60px', height: '4px', borderRadius: '2px', background: 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)' }}></div>
+          </div>
+        </FadeInSection>
+        <div className="products-marquee-wrapper">
+          <div className="products-marquee-track">
+            {[...products, ...products].map((product, index) => (
+              <Link to="/produits" key={`${product.id}-${index}`} className="product-marquee-card">
+                <div className="product-marquee-placeholder">
+                  <Package size={48} />
+                  {product.badge && (
+                    <span className="product-marquee-badge">{product.badge}</span>
+                  )}
+                </div>
+                <div className="product-marquee-content">
+                  <span className="product-marquee-category">{getCategoryName(product.category)}</span>
+                  <h4 className="product-marquee-name">{product.name}</h4>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+        <FadeInSection>
+          <div className="text-center mt-4">
+            <Link to="/produits" className="btn btn-outline-primary px-4">
+              VOIR TOUS LES PRODUITS <ChevronRight size={18} />
+            </Link>
           </div>
         </FadeInSection>
       </section>
@@ -233,7 +275,7 @@ const Home = () => {
         <FadeInSection>
           <div className="container" style={{ maxWidth: '900px' }}>
             <h2 className="display-5 fw-bold text-center mb-3 factory-title">NOTRE USINE À FÈS</h2>
-            <div className="bg-danger mx-auto mb-4" style={{ width: '60px', height: '4px', borderRadius: '2px' }}></div>
+            <div className="mx-auto mb-4" style={{ width: '60px', height: '4px', borderRadius: '2px', background: 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)' }}></div>
             <div className="factory-card">
               <div className="factory-map-placeholder">
                 <iframe 
@@ -262,7 +304,7 @@ const Home = () => {
                       <Building2 size={18} className="text-danger" /> CONTACT DIRECT
                     </h5>
                     <p className="text-secondary mb-0 factory-info-text">+212 535 729 168</p>
-                    <p className="text-danger mb-0 factory-info-text">contact@ciobmaroc.ma</p>
+                    <p className="text-primary mb-0 factory-info-text">contact@ciobmaroc.ma</p>
                   </div>
                 </div>
                 <a href="https://maps.app.goo.gl/wd5tg9hgKfS4mcJQA" target="_blank" rel="noopener noreferrer" className="factory-link mt-3 d-inline-flex align-items-center gap-1">
