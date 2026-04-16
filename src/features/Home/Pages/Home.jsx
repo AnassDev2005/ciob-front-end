@@ -105,12 +105,9 @@ const Home = () => {
         <div className="products-marquee-wrapper">
           <div className="products-marquee-track">
             {[...products, ...products].map((product, index) => (
-              <Link to="/produits" key={`${product.id}-${index}`} className="product-marquee-card">
+              <Link to={`/produits/${product.id}`} key={`${product.id}-${index}`} className="product-marquee-card">
                 <div className="product-marquee-placeholder">
                   <Package size={48} />
-                  {product.badge && (
-                    <span className="product-marquee-badge">{product.badge}</span>
-                  )}
                 </div>
                 <div className="product-marquee-content">
                   <span className="product-marquee-category">{getCategoryName(product.category)}</span>
