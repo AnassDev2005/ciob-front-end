@@ -78,7 +78,7 @@ const Home = () => {
             <h1 className="display-3 fw-bold mb-3 hero-title">
               USTENSILES DE CUISINE DE HAUTE QUALITÉ
             </h1>
-            <div className="mx-auto mb-4 hero-divider" style={{ width: '80px', height: '3px', borderRadius: '2px', background: 'linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)' }}></div>
+            <div className="mx-auto mb-4 hero-divider"></div>
             <p className="display-6 fw-light mb-4 hero-subtitle">
               FABRIQUÉS AU MAROC
             </p>
